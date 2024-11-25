@@ -6,7 +6,11 @@ function Numbers({ handleClickNumber, reset, calculate }) {
   return (
     <div className="numbers-wrapper">
       {numbers.map((number) => (
-        <div key={number} className="number" onClick={() => handleClickNumber(number)}>
+        <div
+          key={number}
+          className="number"
+          onClick={() => handleClickNumber(number)}
+        >
           {number}
         </div>
       ))}
