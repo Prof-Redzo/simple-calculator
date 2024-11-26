@@ -1,17 +1,12 @@
-import React from "react";
 
-function Numbers({ handleClickNumber, reset, calculate }) {
-  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+const Numbers = ({ handleClickNumber, reset, calculate }) => {
+  const numbers = Array.from({ length: 10 }, (_, i) => i); // Generate numbers 0-9
 
   return (
     <div className="numbers-wrapper">
-      {numbers.map((number) => (
-        <div
-          key={number}
-          className="number"
-          onClick={() => handleClickNumber(number)}
-        >
-          {number}
+      {numbers.map((num) => (
+        <div key={num} className="number" onClick={() => handleClickNumber(num)}>
+          {num}
         </div>
       ))}
       <div className="number" onClick={reset}>
@@ -22,6 +17,6 @@ function Numbers({ handleClickNumber, reset, calculate }) {
       </div>
     </div>
   );
-}
+};
 
 export default Numbers;

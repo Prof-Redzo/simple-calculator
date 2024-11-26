@@ -6,56 +6,38 @@ import Numbers from "./components/Numbers";
 import Operators from "./components/Operators";
 
 function App() {
-  const [numbers, setNumbers] = useState([null, null]); // Zamenjuje num1 i num2
-  const [operator, setOperator] = useState(null);
-  const [result, setResult] = useState(null);
+  const [input, setInput] = useState(""); // String to track the entire expression
+  const [result, setResult] = useState(null); // Stores the calculated result
 
   const handleClickNumber = (number) => {
-    setNumbers((prev) => {
-      const [num1, num2] = prev;
-      return num1 === null ? [number, num2] : [num1, number];
-    });
+    setInput((prev) => prev + number); // Append number to the input
+  };
+
+  const handleClickOperator = (operator) => {
+    if (input && !isNaN(input[input.length - 1])) {
+      // Only add an operator if the last character is a number
+      setInput((prev) => prev + operator);
+    }
   };
 
   const calculate = () => {
-    const [num1, num2] = numbers;
-    if (num1 === null || num2 === null || !operator) {
-      return;
+    try {
+      setResult(eval(input)); // Evaluate the input string to calculate result
+    } catch {
+      setResult("Error"); // Handle invalid expressions
     }
-
-    // Mapiranje operatora na odgovarajuće funkcije
-    const operations = {
-      "+": (a, b) => a + b,
-      "-": (a, b) => a - b,
-      "*": (a, b) => a * b,
-      "/": (a, b) => a / b,
-    };
-
-    // Izvrši odgovarajuću operaciju
-    const compute = operations[operator];
-    if (compute) setResult(compute(num1, num2));
   };
 
   const reset = () => {
-    setNumbers([null, null]);
-    setOperator(null);
-    setResult(null);
+    setInput(""); // Clear the input
+    setResult(null); // Clear the result
   };
 
   return (
     <div className="calculator-wrapper">
-      <Display
-        num1={numbers[0]}
-        num2={numbers[1]}
-        operator={operator}
-        result={result}
-      />
-      <Numbers
-        handleClickNumber={handleClickNumber}
-        reset={reset}
-        calculate={calculate}
-      />
-      <Operators setOperator={setOperator} />
+      <Display input={input} result={result} />
+      <Numbers handleClickNumber={handleClickNumber} reset={reset} calculate={calculate} />
+      <Operators handleClickOperator={handleClickOperator} />
     </div>
   );
 }

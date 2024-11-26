@@ -1,11 +1,11 @@
-import React from "react";
 
-function Display({ num1, num2, operator, result }) {
+const Display = ({ input, result }) => {
   return (
-    <div className="calculator-preview">
-      {num1} {operator} {num2} {result ? "=" + result : ""}
+    <div className="display">
+      <div className="input">{input || "0"}</div>
+      <div className="result">{result !== null ? `= ${result}` : ""}</div>
     </div>
   );
-}
+};
 
 export default Display;
