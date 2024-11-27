@@ -23,118 +23,93 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #2c3e50; /* Dark background */
+  color: #ecf0f1; /* Light text color */
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .calculator-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  margin: 50px auto;
-  border: 2px solid #ccc;
+  width: 350px;
+  background-color: #34495e; /* Darker background for calculator */
+  padding: 20px;
   border-radius: 10px;
-  background-color: #f9f9f9;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-
-.calculator-preview {
-  width: 100%;
-  border: 3px solid white;
-  height: 85px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.numbers-wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 buttons per row */
-  gap: 10px; /* Space between buttons */
-  width: 100%;
-  max-width: 260px;
-}
-
-.number {
-  border: 3px solid white;
-  padding: 20px;
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: 20%;
-  margin-bottom: 20px;
-}
-
-.operators-wrapper {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Adjust to match your layout */
-  gap: 10px;
-  width: 100%;
-  max-width: 260px;
-}
-
-
-
-.number:hover, .operator:hover {
-  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .display {
-  width: 100%; /* Match the full width of the container */
-  max-width: 260px; /* Same width as the buttons grid */
-  background-color: white;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: "Arial", sans-serif;
+  background-color: #ecf0f1; /* White background for the display */
+  color: #2c3e50; /* Dark text for input */
   font-size: 1.5rem;
-  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 15px;
   text-align: right;
-  color: #333;
+  min-height: 50px;
+  overflow: hidden;
 }
 
-.number,
-.operator {
-  text-align: center;
-  padding: 15px 0;
-  background-color: #007bff;
-  color: white;
+.numbers, .operators {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #1abc9c; /* Teal button background */
+  color: #ffffff; /* White text */
   font-size: 1.2rem;
-  font-weight: bold;
-  border: 2px solid #ccc;
+  padding: 15px;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #16a085; /* Darker teal on hover */
+  transform: scale(1.05);
+}
+
+button:active {
+  background-color: #148f77; /* Even darker teal on click */
+  transform: scale(0.95);
+}
+
+button:disabled {
+  background-color: #95a5a6; /* Gray for disabled buttons */
+  cursor: not-allowed;
+}
+
+button:last-child {
+  background-color: #e74c3c; /* Red for the reset or 'C' button */
+}
+
+button:last-child:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Ensure proper alignment for input field and numbers */
+.display,
+.numbers,
+.operators {
+  width: 100%;
+}
+
+/* Specific adjustments for display */
+.display {
+  border: 2px solid #1abc9c;
+}
+
+/* Additional styling for the "C" and "=" buttons */
+button[onClick="reset"] {
+  grid-column: span 2; /* Wider "C" button */
+}
+
+button[onClick="calculate"] {
+  grid-column: span 2; /* Wider "=" button */
 }

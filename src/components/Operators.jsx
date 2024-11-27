@@ -1,16 +1,11 @@
-
-const Operators = ({ handleClickOperator }) => {
-  const operators = ["+", "-", "*", "/"]; // Supported operators
-
-  return (
-    <div className="operators-wrapper">
-      {operators.map((op) => (
-        <div key={op} className="operator" onClick={() => handleClickOperator(op)}>
-          {op}
-        </div>
-      ))}
-    </div>
-  );
-};
+const Operators = ({ handleInput }) => (
+  <div className="operators">
+    {["+", "-", "*", "/"].map((op) => (
+      <button key={op} onClick={() => handleInput(op)}>
+        {op}
+      </button>
+    ))}
+  </div>
+);
 
 export default Operators;

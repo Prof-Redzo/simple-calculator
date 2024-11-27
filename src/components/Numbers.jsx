@@ -1,22 +1,15 @@
-
-const Numbers = ({ handleClickNumber, reset, calculate }) => {
-  const numbers = Array.from({ length: 10 }, (_, i) => i); // Generate numbers 0-9
-
-  return (
-    <div className="numbers-wrapper">
-      {numbers.map((num) => (
-        <div key={num} className="number" onClick={() => handleClickNumber(num)}>
+const Numbers = ({ handleInput, reset, calculate }) => (
+  <div className="numbers">
+    {["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "(", ")"].map(
+      (num) => (
+        <button key={num} onClick={() => handleInput(num)}>
           {num}
-        </div>
-      ))}
-      <div className="number" onClick={reset}>
-        C
-      </div>
-      <div className="number" onClick={calculate}>
-        =
-      </div>
-    </div>
-  );
-};
+        </button>
+      )
+    )}
+    <button onClick={reset}>C</button>
+    <button onClick={calculate}>=</button>
+  </div>
+);
 
 export default Numbers;
